@@ -9,7 +9,7 @@ require_once __DIR__.'/config/head.php';
     <main class="form-login">
 
     <form onsubmit="recoverPass(this);">
-        <img class="mb-4" src="./assets/brand/logo.svg" >
+    <a href="./index.php"><img href="./index.php" class="mb-4" src="./assets/brand/logo.svg"></a>
         
         Digite seu endereço de e-mail, enviaremos instruções para resetar a senha!
         <div class="form-floating">
@@ -22,7 +22,7 @@ require_once __DIR__.'/config/head.php';
 
     </form>
 
-    <a href="./login_page.php" class="icon-link">
+    <a href="./index.php" class="icon-link">
         Voltar
     </a>
 

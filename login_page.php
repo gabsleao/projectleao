@@ -9,7 +9,7 @@ require_once __DIR__.'/config/head.php';
     <main class="form-login">
 
       <form onsubmit="login(this);">
-        <img class="mb-4" src="./assets/brand/logo.svg" >
+        <a href="./index.php"><img href="./index.php" class="mb-4" src="./assets/brand/logo.svg"></a>
         <!--<h1 class="h3 mb-3 fw-normal">Login</h1>-->
 
         <div class="form-floating">

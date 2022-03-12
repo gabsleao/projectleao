@@ -9,7 +9,7 @@ require_once __DIR__.'/config/head.php';
   <main class="form-login">
 
     <form onsubmit="register(this)">
-      <img class="mb-4" src="./assets/brand/logo.svg" >
+    <a href="./index.php"><img href="./index.php" class="mb-4" src="./assets/brand/logo.svg"></a>
       <h1 class="h3 mb-3 fw-normal">Registre-se</h1>
 
       <div class="form-floating">
@@ -28,7 +28,7 @@ require_once __DIR__.'/config/head.php';
       </div>
 
       <div class="form-floating">
-        <input type="email" class="form-control" id="email" placeholder="E-mail">
+        <input type="text" class="form-control" id="email" placeholder="E-mail">
         <label for="email">E-mail</label>
       </div>
 
@@ -36,7 +36,7 @@ require_once __DIR__.'/config/head.php';
 
     </form>
 
-    <a href="./login_page.php" class="icon-link">
+    <a href="./index.php" class="icon-link">
         Já possui uma conta? Faça login
     </a>
 
