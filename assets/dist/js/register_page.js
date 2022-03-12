@@ -22,5 +22,6 @@ function register(data){
     if(password !== password_confirm)
         return alert("Suas senhas não são iguais, tente novamente!");
 
+    return alert("Usuário registrado com sucesso!");
     
 }
