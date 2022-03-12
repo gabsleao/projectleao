@@ -3,6 +3,8 @@
 //Header and CSS settings
 require_once __DIR__.'/config/head.php';
 
+Log::doLog('login page accessed!!', 'accessLogs', 1);
+
 ?>
 <html lang="en">
   <body class="text-center"> 

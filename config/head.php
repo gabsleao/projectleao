@@ -1,5 +1,5 @@
 <?php
-
+  require_once __DIR__.'/loadClasses.php';
 ?>
 
 <head>
