@@ -12,7 +12,7 @@ Log::doLog('login page accessed!!', 'accessLogs', 1);
 
       <form onsubmit="login(this);">
         <a href="./index.php"><img href="./index.php" class="mb-4" src="./assets/brand/logo.svg"></a>
-        <!--<h1 class="h3 mb-3 fw-normal">Login</h1>-->
+        <input type="hidden" id="operation" value="login_user">
 
         <div class="form-floating">
           <input type="text" class="form-control" id="username" placeholder="Usuário">
@@ -24,7 +24,7 @@ Log::doLog('login page accessed!!', 'accessLogs', 1);
           <label for="password">Senha</label>
         </div>
         
-        <input class="checkbox mb-3" type="checkbox" value="1" id="keep_logged_in"> Permanecer logado.
+        <input class="checkbox mb-3" type="checkbox" value="0" id="keep_logged_in"> Permanecer logado.
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
 
