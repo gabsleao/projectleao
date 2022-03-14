@@ -1,6 +1,6 @@
 <?php
 
-$Classes = ['Log', 'Database'];
+$Classes = ['Log', 'Database', 'User'];
 
 foreach($Classes as $Class){
     if(existClass($Class))
