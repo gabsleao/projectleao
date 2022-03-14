@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'/../config/head.php';
+require_once __DIR__.'/../config/loaders.php';
 
 if(!isset($_POST))
     throw new Exception('Whoops! Algo deu errado.');
@@ -10,7 +10,8 @@ if(!isset($_POST['operation']))
 switch($_POST['operation']){
     case 'login_user':
         $Response = (new LoginController())->loginUser($_POST);
-        Log::doLog('Response:<br>' . var_export($Response, 1), 'Response');
+        echo json_encode(['response' => $Response]);
+        Log::doLog('Response:<br>' . json_encode(['response' => $Response]), 'Response', 1);
     break;
 
     default:

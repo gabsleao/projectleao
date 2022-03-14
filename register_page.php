@@ -2,6 +2,7 @@
 
 //Header and CSS settings
 require_once __DIR__.'/config/head.php';
+require_once __DIR__.'/config/loaders.php';
 
 ?>
 
