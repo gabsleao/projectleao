@@ -1,5 +1,8 @@
 <?php
   require_once __DIR__.'/loadClasses.php';
+  require_once __DIR__.'/loadControllers.php';
+  require_once __DIR__.'/constantes.php';
+  
 ?>
 
 <head>
@@ -27,6 +30,10 @@
     <script type="text/javascript" charset="utf-8" src="./assets/dist/js/main.js"></script>
     <script type="text/javascript" charset="utf-8" src="./assets/dist/js/login_page.js"></script>
     <script type="text/javascript" charset="utf-8" src="./assets/dist/js/register_page.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="jquery-3.5.1.min.js"></script> -->
 
     <style>
       .bd-placeholder-img {
