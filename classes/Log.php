@@ -32,8 +32,11 @@ class Log {
             $Content .= 'REQUEST_TIME:' . var_export(date('d M Y H:i:s', $_SERVER['REQUEST_TIME'] ?? null), 1) . ' UTC' . PHP_EOL;
         }
         $Content .= '______________________________________________________' .PHP_EOL . PHP_EOL;
-        $Folder = __DIR__ . '/../logs/' . $folderName;
-
+        $Folder = __DIR__ . '/../logs/' . date('d-m-Y') . '/' . $folderName . '.txt';
+        
+        if (!file_exists(__DIR__ . '/../logs/' . date('d-m-Y')))
+            mkdir(__DIR__ . '/../logs/' . date('d-m-Y'), 0777, true);
+        
         file_put_contents($Folder, $Content, FILE_APPEND);
     }
 	
