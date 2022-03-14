@@ -18,17 +18,23 @@ function login(data){
     if(password == 'undefined' || !password)
         return alert("Por favor, insira uma senha!");
 
-   
-    if(username === "admin" && password === "admin"){
-        $.ajax({
-            type : "POST",
-            url  : "./controller/Controller.php",
-            data : { username : username, password : password, keep_logged_in : keep_logged_in, operation : operation },
-            success: function(response){
-                    console.log('Success!!:');
-            }
-        });
-    }else
-        return alert("Por favor, verifique seu nome de usuário e senha.");
+    $.ajax({
+        type : "POST",
+        url  : "./controller/Controller.php",
+        data : { username : username, password : password, keep_logged_in : keep_logged_in, operation : operation },
+        success: function(response){
+                console.log('Success!!:');
+                var jsonResponse = JSON.parse(response).response;
+                console.log(jsonResponse);
+
+                if(jsonResponse.status == 200)
+                    window.location.replace("./dashboard.php");
+                if(jsonResponse.status == 500)
+                    return alert("Por favor, verifique seu nome de usuário e senha.");
+        },
+        error: function(){
+            alert("Whoops! Algo deu errado.");
+        }
+    });
 
 }
