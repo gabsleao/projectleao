@@ -44,4 +44,29 @@ class User{
         setcookie('keep_logged_in', $keep_logged_in, time() + 86400); //Expira em 24h
     }
 
+    public function registerUser($Data = []){
+        if(!isset($Data['username']) || is_null($Data['username']))
+            throw new Exception('Whoops! Insira um nome de usuário.');
+
+        if(!isset($Data['password']) || is_null($Data['password']))
+            throw new Exception('Whoops! Insira uma senha.');
+
+        if(!isset($Data['email']) || is_null($Data['email']))
+            throw new Exception('Whoops! Insira um email.');
+        
+        $Sql = 'INSERT INTO users (name, email, password)
+                VALUES (:name, :email, :password)';
+        $Db = new Database(DATABASE_ALL_USERS);
+        $Statement = $Db->prepare($Sql);
+        $Statement->bindValue(':name', $Data['username']);
+        $Statement->bindValue(':email', $Data['email']);
+        $Statement->bindValue(':password', $Data['password']);
+        $Result = $Statement->execute();
+
+        if($Result)
+            return ['status' => 200, 'message' => 'Usuário registrado com sucesso!'];   
+
+        throw new Exception("Whoops! User não encontrado!");
+    }
+
 }

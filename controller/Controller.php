@@ -14,6 +14,10 @@ switch($_POST['operation']){
         Log::doLog('Response:<br>' . json_encode(['response' => $Response]), 'Response', 1);
     break;
 
+    case 'register_user':
+        $User = new User();
+        $Response = $User->registerUser($_POST);
+        echo json_encode(['response' => $Response]);
     default:
         throw new Exception('Whoops! Operation inválida.');
 }

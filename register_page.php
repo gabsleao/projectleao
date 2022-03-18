@@ -10,12 +10,18 @@ require_once __DIR__.'/config/loaders.php';
   <main class="form-login">
 
     <form onsubmit="register(this)">
+    <input type="hidden" id="operation" value="register_user">
     <a href="./index.php"><img href="./index.php" class="mb-4" src="./assets/brand/logo.svg"></a>
       <h1 class="h3 mb-3 fw-normal">Registre-se</h1>
 
       <div class="form-floating">
         <input type="text" class="form-control" id="username" placeholder="Usuário">
         <label for="username">Usuário</label>
+      </div>
+
+      <div class="form-floating">
+        <input type="text" class="form-control" id="email" placeholder="E-mail">
+        <label for="email">E-mail</label>
       </div>
 
       <div class="form-floating">
@@ -26,11 +32,6 @@ require_once __DIR__.'/config/loaders.php';
       <div class="form-floating">
         <input type="password" class="form-control" id="password_confirm" placeholder="Confirmar senha">
         <label for="password_confirm">Confirmar senha</label>
-      </div>
-
-      <div class="form-floating">
-        <input type="text" class="form-control" id="email" placeholder="E-mail">
-        <label for="email">E-mail</label>
       </div>
 
       <button class="w-100 btn btn-lg btn-primary" type="submit">Registrar</button>
