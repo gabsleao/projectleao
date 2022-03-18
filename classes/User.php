@@ -33,11 +33,13 @@ class User{
         if(is_null($this->iduser))
             throw new Exception("Whoops! User não setado.");
         
+        if (!is_writable(session_save_path()))
+            Log::doLog('Session path "'.session_save_path().'" is not writable for PHP!', 'session');
+            
         session_start();
         foreach(get_object_vars($this) as $Attribute => $value){
             $_SESSION[$Attribute] = $value;
         }
-        Log::doLog(var_export($_SESSION, 1), 'session');
 
         setcookie('keep_logged_in', $keep_logged_in, time() + 86400); //Expira em 24h
     }

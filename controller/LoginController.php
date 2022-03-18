@@ -23,6 +23,7 @@ class LoginController{
         $Rows = $Statement->fetchAll();
         if($Result && count($Rows) > 0){
             $User = new User($Rows[0]['iduser']);
+            
             //set session aqui
             $User->setSession($Data['keep_logged_in']);
             return ['status' => 200, 'message' => 'Usuário logado com sucesso!', 'user' => $User];
