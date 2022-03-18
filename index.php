@@ -7,6 +7,3 @@ if(!isset($_SESSION['iduser']))
     require_once __DIR__.'/login_page.php';
 else
     require_once __DIR__.'/dashboard.php';
-
-if(IS_LOCALHOST)
-    echo 'hey';
