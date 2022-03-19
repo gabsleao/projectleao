@@ -35,9 +35,11 @@ class User{
             throw new Exception("Whoops! User não setado.");
         
         if (!is_writable(session_save_path()))
-            Log::doLog('Session path "'.session_save_path().'" is not writable for PHP!', 'session');
-            
-        session_start();
+            Log::doLog('Session path "'.session_save_path().'" is not writable for PHP!', 'setSession-exception');
+        
+        if(session_status() == PHP_SESSION_NONE)
+            session_start();
+        
         foreach(get_object_vars($this) as $Attribute => $value){
             $_SESSION[$Attribute] = $value;
         }
