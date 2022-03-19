@@ -22,10 +22,14 @@ class Utils{
         if (!file_exists(__DIR__ . '/../tmp/'))
             mkdir(__DIR__ . '/../tmp/', 0777, true);
         
-        $JsonFile = __DIR__ . '/../tmp/' . getmygid() . '-' . rand() . '.json';
+
+        //Create tmp .json file with data
+        $JsonFileName =  getmygid() . '-' . rand() . '.json';
+        $JsonFile = __DIR__ . '/../tmp/' . $JsonFileName;
+
         file_put_contents($JsonFile, json_encode($Data));
 
-        $Cmd = 'php ' . __DIR__ .  '/../background/' . $File . ' ' . $JsonFile;
+        $Cmd = 'php ' . __DIR__ .  '/../background/' . $File . ' welcome_email '  . $JsonFileName;
         Log::doLog(var_export($Cmd, 1) . '<br><br>php_uname: ' . var_export(php_uname(), 1) . '<br><br>Data:' . var_export($Data, 1), 'runBackgroundLogs');
 
         //background no windows

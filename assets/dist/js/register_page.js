@@ -29,7 +29,7 @@ function register(data){
         data : { username : username, password : password, password_confirm : password_confirm, email : email, operation : operation },
         success: function(response){
                 var jsonResponse = JSON.parse(response).response;
-
+                console.log(jsonResponse);
                 alert(jsonResponse.message);
 
                 if(jsonResponse.status == 200)
@@ -38,8 +38,11 @@ function register(data){
                 if(jsonResponse.status == 500)
                     return alert("Por favor, verifique seu nome de usuário e senha.");
         },
-        error: function(){
-            alert("Whoops! Algo deu errado.");
+        error: function(response){
+            var jsonResponse = JSON.parse(response).response;
+            console.log(jsonResponse);
+            
+            alert(jsonRespons.message);
         }
     });
     

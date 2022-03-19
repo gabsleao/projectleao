@@ -112,4 +112,19 @@ class User{
         return false;
     }
 
+    public function userExistsByEmail($Email = null){
+        $Sql = 'SELECT * FROM users WHERE email = :email';
+
+        $Db = new Database(DATABASE_ALL_USERS);
+        $Statement = $Db->prepare($Sql);
+        $Statement->bindValue(':email', $Email);
+        $Result = $Statement->execute();
+        $Rows = $Statement->fetchAll();
+
+        if($Result && count($Rows) > 0)
+            return true;
+
+        return false;
+    }
+
 }

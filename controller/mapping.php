@@ -10,10 +10,11 @@ switch($_POST['operation']){
     case 'logout':
     case 'recover_pass':
         $Response = (new Controller())->controller($_POST);
-        echo json_encode(['response' => $Response]);
-
     break;
 
     default:
-        throw new Exception('Whoops! Operation inválida.');
+        $Response = ['status' => 404, 'message' => 'Operation não encontrada!'];
+    break;
 }
+
+echo json_encode(['response' => $Response]);

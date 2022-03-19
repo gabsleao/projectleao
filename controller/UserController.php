@@ -32,10 +32,12 @@ class UserController{
             throw new Exception('Whoops! Insira um email.');
 
         $User = new User();
-        $Response = $User->registerUser($Data);
-        Log::dolog(var_export($Response, 1), 'responseregisterUser');
 
-        if($Response)
+        //check se não tem um user cadastrado já
+        if(!$User->userExistsByEmail($Data['email']))
+            $Response = $User->registerUser($Data);
+
+        if(isset($Response) && $Response)
             return ['status' => 200, 'message' => 'Usuário registrado com sucesso!'];
         
         return ['status' => 500, 'message' => 'Usuário não foi registrado!'];
