@@ -69,4 +69,14 @@ class User{
         throw new Exception("Whoops! User não encontrado!");
     }
 
+    public function killSession(){
+        if(is_null($this->iduser))
+            throw new Exception("Whoops! User não setado.");
+            
+        unset($_SESSION);  
+        session_destroy();
+
+        return ['status' => 200, 'message' => 'Usuário deslogado com sucesso!']; 
+    }
+
 }
