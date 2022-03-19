@@ -11,4 +11,30 @@ class Utils{
 
         return false;
     }
+
+    static function runBackground($File = null, $Data = []){
+        if(is_null($File))
+            return;
+
+        if(count($Data) == 0)
+            return;
+
+        if (!file_exists(__DIR__ . '/../tmp/'))
+            mkdir(__DIR__ . '/../tmp/', 0777, true);
+        
+        $JsonFile = __DIR__ . '/../tmp/' . getmygid() . '-' . rand() . '.json';
+        file_put_contents($JsonFile, json_encode($Data));
+
+        $Cmd = 'php ' . __DIR__ .  '/../background/' . $File . ' ' . $JsonFile;
+        Log::doLog(var_export($Cmd, 1) . '<br><br>php_uname: ' . var_export(php_uname(), 1) . '<br><br>Data:' . var_export($Data, 1), 'runBackgroundLogs');
+
+        //background no windows
+        if (substr(php_uname(), 0, 7) == "Windows")
+            //BACKGROUND NOT WORKINGGG
+            // pclose(popen("start /B ". $Cmd, "r"));
+            exec($Cmd . " > /dev/null 2>&1 &");
+        else //background linux
+            exec($Cmd . " > /dev/null 2>&1 &");
+
+    }
 }

@@ -33,6 +33,7 @@ class UserController{
 
         $User = new User();
         $Response = $User->registerUser($Data);
+        Log::dolog(var_export($Response, 1), 'responseregisterUser');
 
         if($Response)
             return ['status' => 200, 'message' => 'Usuário registrado com sucesso!'];

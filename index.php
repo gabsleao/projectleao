@@ -1,5 +1,5 @@
 <?php
-//Header and CSS settings
+//Header (CSS settings and SESSION) + loaders
 require_once __DIR__.'/config/head.php';
 require_once __DIR__.'/config/loaders.php';
 

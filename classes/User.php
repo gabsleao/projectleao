@@ -47,7 +47,7 @@ class User{
         setcookie('keep_logged_in', $keep_logged_in, time() + 86400); //Expira em 24h
     }
 
-    public function registerUser($Data = []){        
+    public function registerUser($Data = []){
         $Sql = 'INSERT INTO users (name, email, password)
                 VALUES (:name, :email, :password)';
         
@@ -58,10 +58,15 @@ class User{
         $Statement->bindValue(':password', $Data['password']);
         $Result = $Statement->execute();
 
+        //User inserido no DB, enviar e-mail de boas vindas
+        if($Result){
+            //envia e-mail de welcome
+            Utils::runBackground('sendMail.php', $Data);
+        }
         return $Result;
     }
 
-    public function killSession(){            
+    public function killSession(){
         unset($_SESSION);  
         session_destroy();
 

@@ -21,7 +21,7 @@ class Log {
 
 
     static function doLog($content, $folderName, $showBacktrace = 0){
-        $Content = '[' . date('d M Y H:i:s', time()) . ' UTC] - Content: ' . var_export($content ?? null, 1) . PHP_EOL. PHP_EOL;
+        $Content = /*'[' . date('d M Y H:i:s', time()) . ' UTC] - Content: <br>' .*/ var_export($content ?? null, 1) . PHP_EOL. PHP_EOL;
         if($showBacktrace){
             $Content .= '1. REQUEST:' . var_export($_REQUEST ?? null, 1) . PHP_EOL .PHP_EOL;
             $Content .= '2. SESSION:' . var_export($_SESSION ?? null, 1) . PHP_EOL .PHP_EOL;
@@ -31,8 +31,8 @@ class Log {
             $Content .= 'HTTP_USER_AGENT:' . var_export($_SERVER['HTTP_USER_AGENT'] ?? null, 1) . PHP_EOL . PHP_EOL;
             $Content .= 'REQUEST_TIME:' . var_export(date('d M Y H:i:s', $_SERVER['REQUEST_TIME'] ?? null), 1) . ' UTC' . PHP_EOL;
         }
-        $Content .= '______________________________________________________' .PHP_EOL . PHP_EOL;
-        $Folder = __DIR__ . '/../logs/' . date('d-m-Y') . '/' . $folderName . '.txt';
+        $Content .= '<br>______________________________________________________';
+        $Folder = __DIR__ . '/../logs/' . date('d-m-Y') . '/' . $folderName . '.html';
         
         if (!file_exists(__DIR__ . '/../logs/' . date('d-m-Y')))
             mkdir(__DIR__ . '/../logs/' . date('d-m-Y'), 0777, true);
