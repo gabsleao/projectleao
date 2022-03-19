@@ -23,19 +23,18 @@ function register(data){
     if(password !== password_confirm)
         return alert("Suas senhas não são iguais, tente novamente!");
 
-    console.log('heyy');
     $.ajax({
         type : "POST",
-        url  : "./controller/Controller.php",
+        url  : "./controller/mapping.php",
         data : { username : username, password : password, password_confirm : password_confirm, email : email, operation : operation },
         success: function(response){
                 var jsonResponse = JSON.parse(response).response;
-                console.log(jsonResponse);
 
-                if(jsonResponse.status == 200){
-                    alert(jsonResponse.message);
+                alert(jsonResponse.message);
+
+                if(jsonResponse.status == 200)
                     window.location.replace("./index.php");
-                }
+                
                 if(jsonResponse.status == 500)
                     return alert("Por favor, verifique seu nome de usuário e senha.");
         },
@@ -43,7 +42,5 @@ function register(data){
             alert("Whoops! Algo deu errado.");
         }
     });
-
-    return alert("Usuário registrado com sucesso!");
     
 }

@@ -1,6 +1,6 @@
 <?php
 
-$Controllers = ['LoginController'];
+$Controllers = ['UserController', 'Controller'];
 
 foreach($Controllers as $Controller){
     if(existController($Controller))

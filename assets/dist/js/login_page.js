@@ -20,7 +20,7 @@ function login(data){
 
     $.ajax({
         type : "POST",
-        url  : "./controller/Controller.php",
+        url  : "./controller/mapping.php",
         data : { username : username, password : password, keep_logged_in : keep_logged_in, operation : operation },
         success: function(response){
                 var jsonResponse = JSON.parse(response).response;

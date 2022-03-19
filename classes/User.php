@@ -13,6 +13,7 @@ class User{
 
     public function getUser($iduser = null){
         $Sql = 'SELECT * FROM users WHERE iduser = :iduser';
+
         $Db = new Database(DATABASE_ALL_USERS);
         $Statement = $Db->prepare($Sql);
         $Statement->bindValue(':iduser', $iduser);
@@ -44,18 +45,10 @@ class User{
         setcookie('keep_logged_in', $keep_logged_in, time() + 86400); //Expira em 24h
     }
 
-    public function registerUser($Data = []){
-        if(!isset($Data['username']) || is_null($Data['username']))
-            throw new Exception('Whoops! Insira um nome de usuário.');
-
-        if(!isset($Data['password']) || is_null($Data['password']))
-            throw new Exception('Whoops! Insira uma senha.');
-
-        if(!isset($Data['email']) || is_null($Data['email']))
-            throw new Exception('Whoops! Insira um email.');
-        
+    public function registerUser($Data = []){        
         $Sql = 'INSERT INTO users (name, email, password)
                 VALUES (:name, :email, :password)';
+        
         $Db = new Database(DATABASE_ALL_USERS);
         $Statement = $Db->prepare($Sql);
         $Statement->bindValue(':name', $Data['username']);
@@ -63,20 +56,53 @@ class User{
         $Statement->bindValue(':password', $Data['password']);
         $Result = $Statement->execute();
 
-        if($Result)
-            return ['status' => 200, 'message' => 'Usuário registrado com sucesso!'];   
-
-        throw new Exception("Whoops! User não encontrado!");
+        return $Result;
     }
 
-    public function killSession(){
-        if(is_null($this->iduser))
-            throw new Exception("Whoops! User não setado.");
-            
+    public function killSession(){            
         unset($_SESSION);  
         session_destroy();
 
         return ['status' => 200, 'message' => 'Usuário deslogado com sucesso!']; 
+    }
+
+    public function loginUser($Data = []){
+        // $Sql = 'SELECT * FROM users WHERE name = :username AND password  = AES_ENCRYPT("' . ENCRYPT_KEY . '", :password) LIMIT 1';
+        $Sql = 'SELECT iduser FROM users WHERE name = :username AND password  = :password';
+
+        $Db = new Database(DATABASE_ALL_USERS);
+        $Statement = $Db->prepare($Sql);
+        $Statement->bindValue(':username', $Data['username']);
+        $Statement->bindValue(':password', $Data['password']);
+        $Result = $Statement->execute();
+        $Rows = $Statement->fetchAll();
+
+        if($Result && count($Rows) > 0){
+            $User = new User($Rows[0]['iduser']);
+            
+            //set session aqui
+            $User->setSession($Data['keep_logged_in']);
+            return true;
+        }
+
+        return false;
+    }
+
+    public function recoverPass($Data = []){
+        $Sql = 'SELECT iduser FROM users WHERE email = :email';
+        
+        $Db = new Database(DATABASE_ALL_USERS);
+        $Statement = $Db->prepare($Sql);
+        $Statement->bindValue(':email', $Data['email']);
+        $Result = $Statement->execute();
+        $Rows = $Statement->fetchAll();
+
+        if($Result && count($Rows) > 0){
+            //tratar envio de e-mail / recover password
+            $User = new User($Rows[0]['iduser']);
+            return true;
+        }
+        return false;
     }
 
 }

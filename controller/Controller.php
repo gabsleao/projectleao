@@ -1,41 +1,28 @@
 <?php
-require_once __DIR__.'/../config/loaders.php';
+class Controller{
 
-if(!isset($_POST))
-    throw new Exception('Whoops! Algo deu errado.');
+    public function controller($Data){
+        if(!isset($Data['operation']))
+            throw new Exception('Whoops! Data operation not set.');
 
-if(!isset($_POST['operation']))
-    throw new Exception('Whoops! Falha em determinar operation.');
+        switch($Data['operation']){
+            case 'login_user':
+                $Response = (new UserController())->loginUser($Data);
+            break;
 
-switch($_POST['operation']){
-    case 'login_user':
-        $Response = (new LoginController())->loginUser($_POST);
-        echo json_encode(['response' => $Response]);
+            case 'register_user':
+                $Response = (new UserController())->registerUser($Data);
+            break;
 
-    break;
+            case 'logout':
+                $Response = (new UserController())->killSession();
+            break;
 
-    case 'register_user':
-        $User = new User();
-        $Response = $User->registerUser($_POST);
-        echo json_encode(['response' => $Response]);
-
-    break;
-
-    case 'logout':
-        if(isset($_SESSION['iduser'])){
-            $User = new User($_SESSION['iduser']);
-            $Response = $User->killSession();
-        }else{
-            //Session nao está setada ou expirou
-            $Response = ['status' => 500, 'message' => 'Whoops! Algo deu errado.'];
+            case 'recover_pass':
+                $Response = (new UserController())->recoverPass($Data);
+            break;
         }
 
-        echo json_encode(['response' => $Response]);
-
-    break;
-
-
-
-    default:
-        throw new Exception('Whoops! Operation inválida.');
+        return $Response;
+    }
 }
