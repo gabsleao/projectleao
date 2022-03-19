@@ -42,7 +42,8 @@ require_once __DIR__.'/config/loaders.php';
         Já possui uma conta? Faça login
     </a>
 
-    <p class="mt-5 mb-3 text-muted fixed-bottom">&copy; <?php echo date("Y"); ?></p>
+    <?php $FooterClass = !Utils::isMobile() ? 'class="mt-5 mb-3 text-muted fixed-bottom"' : 'class="mt-5 mb-3 text-muted"'; ?>
+    <p <?php echo $FooterClass ?>>&copy; <?php echo date("Y"); ?></p>
 
   </main>
 </body>

@@ -13,7 +13,8 @@ require_once __DIR__.'/config/loaders.php';
         <button class="w-100 btn btn-lg btn-primary" onclick="logout()">Logout</button>
       </div >
 
-      <p class="mt-5 mb-3 text-muted fixed-bottom">&copy; <?php echo date("Y"); ?></p>
+      <?php $FooterClass = !Utils::isMobile() ? 'class="mt-5 mb-3 text-muted fixed-bottom"' : 'class="mt-5 mb-3 text-muted"'; ?>
+      <p <?php echo $FooterClass ?>>&copy; <?php echo date("Y"); ?></p>
     </main>
   </body>
 </html>
