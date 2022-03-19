@@ -39,7 +39,7 @@ Log::doLog('login page accessed!!', 'accessLogs', 1);
             Esqueceu a senha? Recuperar
         </a>
 
-       <?php $FooterClass = !Utils::isMobile() ? 'class="mt-5 mb-3 text-muted fixed-bottom"' : 'class="mt-5 mb-3 text-muted'; ?>
+       <?php $FooterClass = !Utils::isMobile() ? 'class="mt-5 mb-3 text-muted fixed-bottom"' : 'class="mt-5 mb-3 text-muted"'; ?>
       <p <?php echo $FooterClass; ?>>&copy; <?php echo date("Y"); ?></p>
       </div >
 
