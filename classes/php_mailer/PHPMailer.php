@@ -280,14 +280,14 @@ class PHPMailer
      *
      * @var string
      */
-    public $Host = 'smtp.gmail.com';
+    public $Host = '';
 
     /**
      * The default SMTP server port.
      *
      * @var int
      */
-    public $Port = 587;
+    public $Port = 0;
 
     /**
      * The SMTP HELO/EHLO name used for the SMTP connection.
@@ -340,14 +340,14 @@ class PHPMailer
      *
      * @var string
      */
-    public $Username = 'projectleao.noreply@gmail.com';
+    public $Username = '';
 
     /**
      * SMTP password.
      *
      * @var string
      */
-    public $Password = '6qwt43t_75hslVrO';
+    public $Password = '';
 
     /**
      * SMTP auth type.
