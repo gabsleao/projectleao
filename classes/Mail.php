@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\SMTP;
 class Mail extends PHPMailer{
 
     public $TemplatesDir = (__DIR__ . '/../assets/brand/email_templates/');
-    public $CredentialsFile = (__DIR__ . '/../config/credentials.json');
+    public $CredentialsFile = (__DIR__ . '/../config/credentials-mail.json');
     public $SenderName = 'Equipe ' . PRODUCT_NAME;
 
     public function __construct(){

@@ -1,8 +1,9 @@
 <?php
 
 class Database extends PDO{
-    private $DBUSER = 'gabsleao';
-    private $DBPASS = '6qwt43t_75hslVrO';
+    public $CredentialsFile = (__DIR__ . '/../config/credentials-db.json');
+    private $DBUSER = '';
+    private $DBPASS = '';
     private $DBHOST = IS_LOCALHOST ? 'localhost' : 'não sei kk';
 
     private $Connection = null;
@@ -10,6 +11,12 @@ class Database extends PDO{
     function __construct($Database = null){
         if(is_null($Database))
             throw new PDOException('Whoops! Database não setada.');
+
+        if(file_exists($this->CredentialsFile)){
+            $Credentials = file_get_contents(json_decode($this->CredentialsFile));
+            $this->DBUSER = $Credentials['DBUSER'];
+            $this->DBPASS = $Credentials['DBPASS'];
+        }
 
         try {
             $this->Connection = parent::__construct('mysql:host='. $this->DBHOST . ';dbname=' . $Database, $this->DBUSER, $this->DBPASS);
