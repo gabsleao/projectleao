@@ -11,11 +11,11 @@ class Mail extends PHPMailer{
 
     public function __construct(){
         if(file_exists($this->CredentialsFile)){
-            $Credentials = file_get_contents(json_decode($this->CredentialsFile));
-            $this->Username = $Credentials['Username'];
-            $this->Password = $Credentials['Password'];
-            $this->Host = $Credentials['Host'];
-            $this->Port = $Credentials['Port'];
+            $Credentials = json_decode(file_get_contents($this->CredentialsFile));
+            $this->Username = $Credentials->Username;
+            $this->Password = $Credentials->Password;
+            $this->Host = $Credentials->Host;
+            $this->Port = $Credentials->Port;
         }
         
     }
@@ -71,9 +71,8 @@ class Mail extends PHPMailer{
         $With = array(URL_PRODUTO, PRODUCT_NAME, $this->SenderName, $Recipient['username']);
 
         $Body = str_replace($Replace, $With, file_get_contents($Template));
-        // Log::doLog(var_export($this->Body, 1), 'htmlBody');
 
-        if($this->sendMail($Subject, $Body, $Recipient['email']));
+        if($this->sendMail($Subject, $Body, $Recipient['email']))
             return true;
 
         return false;

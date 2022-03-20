@@ -16,8 +16,8 @@ Log::doLog('login page accessed!!', 'accessLogs', 1);
         <input type="hidden" id="operation" value="login_user">
 
         <div class="form-floating">
-          <input type="text" class="form-control" id="username" placeholder="Usuário">
-          <label for="username">Usuário</label>
+          <input type="text" class="form-control" id="email" placeholder="Email">
+          <label for="email">Email</label>
           
         </div>
         <div class="form-floating">

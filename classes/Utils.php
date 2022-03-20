@@ -35,8 +35,8 @@ class Utils{
         //background no windows
         if (substr(php_uname(), 0, 7) == "Windows")
             //BACKGROUND NOT WORKINGGG
-            // pclose(popen("start /B ". $Cmd, "r"));
-            exec($Cmd . " > /dev/null 2>&1 &");
+            pclose(popen("start /B ". $Cmd, "r"));
+            // exec($Cmd . " > /dev/null 2>&1 &");
         else //background linux
             exec($Cmd . " > /dev/null 2>&1 &");
 

@@ -6,7 +6,7 @@ class UserController{
     public $password = null;
 
     public function loginUser($Data){
-        if(!isset($Data['username']) || is_null($Data['username']))
+        if(!isset($Data['email']) || is_null($Data['email']))
             throw new Exception('Whoops! Insira um nome de usuário.');
 
         if(!isset($Data['password']) || is_null($Data['password']))

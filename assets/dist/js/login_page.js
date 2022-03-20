@@ -2,7 +2,7 @@ function login(data){
     if(data == 'undefined')
         return alert ("Whoops! Algo deu errado.");
     
-    var username = data.username.value;
+    var email = data.email.value;
     var password = data.password.value;
     var keep_logged_in = 0;
     var operation = data.operation.value;
@@ -12,7 +12,7 @@ function login(data){
             keep_logged_in = 1;
     }
 
-    if(username == 'undefined' || !username)
+    if(email == 'undefined' || !email)
         return alert("Por favor, insira um nome de usuário!");
         
     if(password == 'undefined' || !password)
@@ -21,7 +21,7 @@ function login(data){
     $.ajax({
         type : "POST",
         url  : "./controller/mapping.php",
-        data : { username : username, password : password, keep_logged_in : keep_logged_in, operation : operation },
+        data : { email : email, password : password, keep_logged_in : keep_logged_in, operation : operation },
         success: function(response){
                 var jsonResponse = JSON.parse(response).response;
                 console.log(jsonResponse);

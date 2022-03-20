@@ -48,8 +48,8 @@ class User{
     }
 
     public function registerUser($Data = []){
-        $Sql = 'INSERT INTO users (name, email, password)
-                VALUES (:name, :email, :password)';
+        $Sql = 'INSERT INTO users (name, password, email)
+                VALUES (:name, :password, :email)';
         
         $Db = new Database(DATABASE_ALL_USERS);
         $Statement = $Db->prepare($Sql);
@@ -74,19 +74,20 @@ class User{
     }
 
     public function loginUser($Data = []){
+        Log::doLog(var_export($Data, 1), 'loginFlow');
         // $Sql = 'SELECT * FROM users WHERE name = :username AND password  = AES_ENCRYPT("' . ENCRYPT_KEY . '", :password) LIMIT 1';
-        $Sql = 'SELECT iduser FROM users WHERE name = :username AND password  = :password';
+        $Sql = 'SELECT iduser FROM users WHERE email = :email AND password = :password AND is_deleted = 0';
 
         $Db = new Database(DATABASE_ALL_USERS);
         $Statement = $Db->prepare($Sql);
-        $Statement->bindValue(':username', $Data['username']);
+        $Statement->bindValue(':email', $Data['email']);
         $Statement->bindValue(':password', $Data['password']);
         $Result = $Statement->execute();
         $Rows = $Statement->fetchAll();
 
         if($Result && count($Rows) > 0){
             $User = new User($Rows[0]['iduser']);
-            
+            Log::doLog(var_export($User, 1), 'loginFlow');
             //set session aqui
             $User->setSession($Data['keep_logged_in']);
             return true;
@@ -120,6 +121,7 @@ class User{
         $Statement->bindValue(':email', $Email);
         $Result = $Statement->execute();
         $Rows = $Statement->fetchAll();
+        Log::doLog(var_export($Email, 1), 'rows');
 
         if($Result && count($Rows) > 0)
             return true;

@@ -31,7 +31,7 @@ class Log {
             $Content .= 'HTTP_USER_AGENT:' . var_export($_SERVER['HTTP_USER_AGENT'] ?? null, 1) . PHP_EOL . PHP_EOL;
             $Content .= 'REQUEST_TIME:' . var_export(date('d M Y H:i:s', $_SERVER['REQUEST_TIME'] ?? null), 1) . ' UTC' . PHP_EOL;
         }
-        $Content .= '<br>______________________________________________________';
+        $Content .= '<br>_____________________________________________________________________________________________________________________________<br><br>';
         $Folder = __DIR__ . '/../logs/' . date('d-m-Y') . '/' . $folderName . '.html';
         
         if (!file_exists(__DIR__ . '/../logs/' . date('d-m-Y')))

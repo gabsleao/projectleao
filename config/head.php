@@ -28,7 +28,7 @@ if(session_status() == PHP_SESSION_NONE)
     <script type="text/javascript" charset="utf-8" src="./assets/dist/js/login_page.js"></script>
     <script type="text/javascript" charset="utf-8" src="./assets/dist/js/register_page.js"></script>
 
-    <!-- jQuery -->
+    <!-- jQuery TO-DO change to src files -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <script src="jquery-3.5.1.min.js"></script> -->
 

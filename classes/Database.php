@@ -13,9 +13,9 @@ class Database extends PDO{
             throw new PDOException('Whoops! Database não setada.');
 
         if(file_exists($this->CredentialsFile)){
-            $Credentials = file_get_contents(json_decode($this->CredentialsFile));
-            $this->DBUSER = $Credentials['DBUSER'];
-            $this->DBPASS = $Credentials['DBPASS'];
+            $Credentials = json_decode(file_get_contents($this->CredentialsFile));
+            $this->DBUSER = $Credentials->DBUSER;
+            $this->DBPASS = $Credentials->DBPASS;
         }
 
         try {
