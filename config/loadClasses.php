@@ -25,7 +25,7 @@ function existClass($Class, $Dir){
     return false;
 }
 
-function includeClasses($Classes, $Dir, ){
+function includeClasses($Classes, $Dir){
     foreach($Classes as $Class){
         if(existClass($Class, $Dir))
             include $Dir . $Class;
